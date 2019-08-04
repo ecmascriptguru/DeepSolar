@@ -210,7 +210,7 @@ def train():
             start_time = time.time()
             # construct image batch and label batch for one step train
             minibatch = []
-            for count in xrange(0, BATCH_SIZE):
+            for count in range(0, BATCH_SIZE):
                 element = train_set_queue.pop()
                 minibatch.append(element)
                 train_set_queue.appendleft(element)
