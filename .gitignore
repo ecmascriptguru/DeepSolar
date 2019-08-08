@@ -2,3 +2,5 @@
 venv/*
 ckpt/*
 *.pickle
+SPI_eval/*
+SPI_train/*
