@@ -18,10 +18,10 @@ from collections import deque
 from inception import inception_model as inception
 from inception.slim import slim
 
-FLAGS = tf.app.flags.FLAGS
 
 tf.app.flags.DEFINE_string('ckpt_dir', 'ckpt/inception_classification',
                            """Directory for restoring trained model checkpoints.""")
+FLAGS = tf.app.flags.FLAGS
 
 BATCH_SIZE = 100
 IMAGE_SIZE = 299
@@ -39,7 +39,7 @@ def generate_eval_set():
     # load all train data and return a deque contains all images
     # and corresponding labels.
     try:
-        with open('test_set_list', 'r') as f:
+        with open('test_set_list.pickle', 'rb') as f:
             eval_set_list = pickle.load(f)
         print('Eval set size: ' + str(len(eval_set_list)))
     except:
@@ -61,7 +61,7 @@ def test():
 
         saver = tf.train.Saver(tf.all_variables())
 
-        ckpt = tf.train.get_checkpoint_state(FLAGS.checkpoint_dir)
+        ckpt = tf.train.get_checkpoint_state(FLAGS.ckpt_dir)
 
         sess = tf.Session(config=tf.ConfigProto(
             log_device_placement=True))
@@ -94,7 +94,7 @@ def test():
                 image_list = [load_image(d[0]) for d in minibatch]
                 label_list = [d[1] for d in minibatch]
                 index_list = [d[2] for d in minibatch]
-                type_list = [d[4] for d in minibatch]
+                type_list = [d[4].strip() for d in minibatch]
 
                 image_batch = np.array(image_list)
 
