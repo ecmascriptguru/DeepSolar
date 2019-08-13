@@ -24,7 +24,6 @@ from inception.slim import losses
 
 
 class LossesTest(tf.test.TestCase):
-
   def testL1Loss(self):
     with self.test_session():
       shape = [5, 5, 5]
@@ -47,7 +46,6 @@ class LossesTest(tf.test.TestCase):
 
 
 class RegularizersTest(tf.test.TestCase):
-
   def testL1Regularizer(self):
     with self.test_session():
       shape = [5, 5, 5]
@@ -136,7 +134,6 @@ class RegularizersTest(tf.test.TestCase):
 
 
 class CrossEntropyLossTest(tf.test.TestCase):
-
   def testCrossEntropyLossAllCorrect(self):
     with self.test_session():
       logits = tf.constant([[10.0, 0.0, 0.0],
