@@ -25,7 +25,7 @@ from inception.slim import slim
 
 FLAGS = tf.app.flags.FLAGS
 
-tf.app.flags.DEFINE_string('two_layers', False,
+tf.app.flags.DEFINE_string('two_layers', 'false',  #False,
                            """ If true, two layers in the segmentation branch,
                            else one layer. """)
 
@@ -65,7 +65,7 @@ def train():
     # load train set list and transform it to queue. For time concern, we recommmend use a subset of training set
     # to fine-tune the segmentation branch.
     try:
-        with open('train_set_list.pickle', 'r') as f:
+        with open('train_set_list.pickle', 'rb') as f:
             train_set_list = pickle.load(f)
     except:
         raise EnvironmentError('Data list not existed. Please run generate_data_list.py first.')
