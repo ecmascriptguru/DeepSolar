@@ -16,21 +16,26 @@ from collections import deque
 
 from inception import inception_model as inception
 from inception.slim import slim
+from src.settings import Config
 
 FLAGS = tf.app.flags.FLAGS
 
-tf.app.flags.DEFINE_string('ckpt_save_dir', 'ckpt/inception_classification',
-                           """Directory for saving model checkpoint. """)
+tf.app.flags.DEFINE_string(
+    'ckpt_save_dir', os.path.join(Config.BASE_DIR, 'ckpt/inception_classification'),
+    """Directory for saving model checkpoint. """)
 
-tf.app.flags.DEFINE_string('ckpt_restore_dir', 'ckpt/inception_classification',
-                           """Directory for restoring old model checkpoint. """)
+tf.app.flags.DEFINE_string(
+    'ckpt_restore_dir', os.path.join(Config.BASE_DIR, 'ckpt/inception_classification'),
+    """Directory for restoring old model checkpoint. """)
 
-tf.app.flags.DEFINE_string('pretrained_model_ckpt_path', 'ckpt/inception-v3/model.ckpt-157585',
-                           """If specified, restore this pretrained model """
-                           """before beginning any training.""")
+tf.app.flags.DEFINE_string(
+    'pretrained_model_ckpt_path',
+    os.path.join(Config.BASE_DIR, 'ckpt/inception-v3/model.ckpt-157585'),
+    """If specified, restore this pretrained model before beginning any training.""")
 
-tf.app.flags.DEFINE_string('train_set_dir', 'SPI_train',
-                           """Directory of training set""")
+tf.app.flags.DEFINE_string(
+    'train_set_dir', os.path.join(Config.BASE_DIR, 'SPI_train'),
+    """Directory of training set""")
 
 tf.app.flags.DEFINE_integer('max_steps', 200000,
                             """Number of batches/steps to run.""")
@@ -172,7 +177,7 @@ def train():
                             batchnorm_updates_op)
 
         # Create a saver.
-        saver = tf.train.Saver(tf.all_variables())
+        saver = tf.train.Saver()  # tf.all_variables())
 
         # Build the summary operation from the last tower summaries.
         summary_op = tf.summary.merge_all()

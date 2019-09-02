@@ -10,7 +10,7 @@ train_set_list = []
 pos_num = 0
 neg_num = 0
 # negative samples
-for i in range(1, 320378):
+for i in range(1, 100):  # 320378
     img_path = os.path.join(TRAIN_SET_DIR, '0', str(i)+'.png')
     if not os.path.exists(img_path):
         continue
@@ -18,7 +18,7 @@ for i in range(1, 320378):
     neg_num += 1
 
 # positive samples
-for i in range(1, 46091):
+for i in range(1, 100):  # 46091
     img_path = os.path.join(TRAIN_SET_DIR, '1', str(i)+'.png')
     if not os.path.exists(img_path):
         continue
@@ -38,7 +38,7 @@ val_set_list = []
 pos_num = 0
 neg_num = 0
 # negative samples
-for i in range(1, 227):
+for i in range(1, 100):  # 227
     img_path = os.path.join(VAL_SET_DIR, '0', str(i)+'.png')
     if not os.path.exists(img_path):
         continue
@@ -46,7 +46,7 @@ for i in range(1, 227):
     neg_num += 1
 
 # positive samples
-for i in range(1, 12761):
+for i in range(1, 100):  # 12761
     img_path = os.path.join(VAL_SET_DIR, '1', str(i)+'.png')
     if not os.path.exists(img_path):
         continue
@@ -70,7 +70,7 @@ for index in range(1, 66):
     region_dir = os.path.join(TEST_SET_DIR, str(index))
 
     # negative samples
-    for i in range(1, 3001):
+    for i in range(1, 100):  # 3001
         img_path = os.path.join(region_dir, '0', str(i) + '.png')
         if not os.path.exists(img_path):
             continue
@@ -78,7 +78,7 @@ for index in range(1, 66):
         test_set_list.append((img_path, [0], index, i, region_type))
 
     # positive samples
-    for i in range(1, 3001):
+    for i in range(1, 100):  # 3001
         img_path = os.path.join(region_dir, '1', str(i) + '.png')
         if not os.path.exists(img_path):
             continue
